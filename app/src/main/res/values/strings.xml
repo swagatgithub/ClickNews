@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ClickNews</string>
+    <string name="retry">Retry</string>
+    <string name="searchInstruction">Tap the magnifying glass to start searching\n</string>
+    <string name="no_bookmark">No BookMark</string>
+    <string name="breaking">Breaking</string>
+    <string name="search">Search</string>
+    <string name="bookmarks">Bookmarks</string>
 </resources>

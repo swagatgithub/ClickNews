@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/breakingMenu"
+        android:title="@string/breaking"
+        android:icon="@drawable/outline_breaking_24"/>
+
+    <item
+        android:id="@+id/searchMenu"
+        android:title="@string/search"
+        android:icon="@drawable/outline_search_24"/>
+
+    <item
+        android:id="@+id/bookmarksMenu"
+        android:title="@string/bookmarks"
+        android:icon="@drawable/outline_bookmarks_24"/>
+
+</menu>

@@ -2,4 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="aero">#7CB9E8</color>
+    <color name="charcoal">#36454f</color>
 </resources>
