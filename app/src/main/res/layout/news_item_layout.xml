@@ -5,7 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="4dp">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/newsImage"
@@ -26,8 +27,8 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/bookmarkIcon"
-        android:layout_width="52dp"
-        android:layout_height="52dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/outline_bookmarks_24"
         android:tint="@color/white"
         app:layout_constraintRight_toRightOf="parent"
@@ -36,6 +37,7 @@
         android:layout_marginTop="8dp"/>
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/newsTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -46,7 +48,6 @@
         android:textColor="@color/white"
         android:ellipsize="end"
         tools:text ="hellommmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"
-        android:textSize="24sp"
         android:maxLines="1"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

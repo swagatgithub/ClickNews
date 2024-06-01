@@ -34,8 +34,8 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
        // val newsApiKeyValue: String by project
 
-        val newsApiKeyValue = gradleLocalProperties(rootDir).getProperty("newsApiKeyValue")
-        buildConfigField("String","newsApiKey" , newsApiKeyValue )
+        val newsApiKeyValue = gradleLocalProperties(rootDir , providers).getProperty("newsApiKeyValue")
+              buildConfigField("String","newsApiKey" , newsApiKeyValue )
     }
 
 
@@ -70,8 +70,11 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     //WebServiceCalling
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.squareup.retrofit2:retrofit:2.10.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.10.0")
+
+    //Logging Interceptor
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 
     //roomlocalcaching
     implementation("androidx.room:room-runtime:2.6.1")
@@ -79,11 +82,14 @@ dependencies {
     implementation("androidx.room:room-ktx:2.6.1")
 
     //dependencyinjection
-    implementation("com.google.dagger:hilt-android:2.50")
-    kapt("com.google.dagger:hilt-android-compiler:2.50")
+    implementation("com.google.dagger:hilt-android:2.51")
+    kapt("com.google.dagger:hilt-android-compiler:2.51")
 
     //for swipe-to-refresh functionality
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
+
+    //Glide dependency
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 
 }
 

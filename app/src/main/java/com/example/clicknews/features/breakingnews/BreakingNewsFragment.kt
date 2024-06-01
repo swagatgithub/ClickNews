@@ -1,63 +1,54 @@
 package com.example.clicknews.features.breakingnews
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.clicknews.R
+import com.example.clicknews.databinding.BreakingNewsLayoutBinding
+import com.example.clicknews.shared.NewsArticleListAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class BreakingNewsFragment : Fragment(R.layout.breaking_news_layout) {
+class BreakingNewsFragment : Fragment(R.layout.breaking_news_layout)
+{
+
     private val breakingNewsViewModel: BreakingNewsViewModel by viewModels()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        println("onCreate() Of BreakingNewsFragment..")
-    }
+    private val newsArticleListAdapter = NewsArticleListAdapter()
 
-    override fun onStart() {
-        super.onStart()
-        println("onStart() of BreakingNewsFragment..")
-    }
 
-    override fun onResume() {
-        super.onResume()
-        println("onResume() of BreakingNewsFragment..")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        println("onPause() of BreakingNewsFragment")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        println("onStop() of BreakingNewsFragment..")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        println("onDestroy() of BreakingNewsFragment..")
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        println("onCreateView() of BreakingNewsFragment..")
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+    {
         super.onViewCreated(view, savedInstanceState)
-        println("onViewCreated() of BreakingNewsFragment..")
+
+        val breakingNewsLayoutBinding = BreakingNewsLayoutBinding.bind(view)
+
+        breakingNewsLayoutBinding.apply {
+            breakingNewsRecyclerView.apply {
+                layoutManager =  LinearLayoutManager(requireContext())
+                setHasFixedSize(true)
+                adapter = newsArticleListAdapter
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+
+            println("Inside Launch of a new coroutine..")
+
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                println("Inside repeatOnLifecycle...")
+                breakingNewsViewModel.breakingNewsUiState.collect{
+                    println("Inside Collect Method Of StateFlow(Not Mutable)")
+                    newsArticleListAdapter.submitList(it)
+                }
+            }
+        }
+
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        println("onDestroyView() of BreakingNewsFragment..")
-    }
 }
